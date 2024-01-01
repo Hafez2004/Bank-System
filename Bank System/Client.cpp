@@ -14,11 +14,19 @@ void Client::signUp()
 	cout << " Last Name : ", cin >> lname;
     cout << "  Address  : ";
     do { getline(cin, addr); } while (addr == "");
+
     cout << "\t[Date Of Birth]\n";
     do{
-        cout << "Day : ", cin >> bth[0];
-        cout << "Month : ", cin >> bth[1];
-        cout << "Year : ", cin >> bth[2];
+        str yy,mm,dd;
+        cout << "Day : ", cin >> dd;
+        if (validateInput(dd))
+            bth[0] = stoi(dd);
+        cout << "Month : ", cin >> mm;
+        if (validateInput(mm))
+            bth[1] = stoi(mm);
+        cout << "Year : ", cin >> yy;
+        if (validateInput(yy))
+            bth[2] = stoi(yy);
         if (!validateDateOfBirth(bth[0], bth[1], bth[2]))
         {
             cout << "\t[Invalid Date]\n";
@@ -26,6 +34,7 @@ void Client::signUp()
         }
     } while (!validateDateOfBirth(bth[0], bth[1], bth[2]));
     cls;
+
     cout << "\t\t[SIGN-UP]\n\n";
     do
     {
@@ -44,9 +53,9 @@ void Client::signUp()
         }
     } while (isFound(email) || pass != confirm || pass == "" || confirm == "");
     addClient();
+
     cout << "\t\t[DONE]";
-    Sleep(delay_ms);
-    cls;
+    click();
 }
 
 bool Client::isFound(str email_)
@@ -81,6 +90,8 @@ bool Client::validateDateOfBirth(int day, int month, int year) {
         {9, 30}, {10, 31}, {11, 30}, {12, 31}
     };
 
+    //Check if the input is num or not
+
     // Check if the month is valid
     if (month < 1 || month > 12)
         return false;
@@ -94,7 +105,7 @@ bool Client::validateDateOfBirth(int day, int month, int year) {
         return false;
 
     // Check if the year is reasonable (assuming a realistic upper limit)
-    if (year < 1900 || year > 2100)
+    if (year < 1900 || year > 2024)
         return false;
 
     // Date is valid
@@ -113,10 +124,10 @@ void Client::addClient()
 
 void Client::showData()
 {
-    cout << "\t\t[Clients Data]\n\n";
+    cout << "\t\t[Clients Data]\n";
+    cout << "\t  Name   Email   Birth\n";
+    cout << "--------------------------------------\n";
     if (Email.size() > 0)
-    {
-        str ok;
         for (int i = 0; i < Email.size(); i++)
         {
             cout << '\t' << i+1 << ' ' << userName[i] << "   " << Email[i] << "   " << DateOfBrith[i][0];
@@ -124,13 +135,7 @@ void Client::showData()
                 cout << '/' << DateOfBrith[i][j];
             cout << endl;
         }
-        cout << ":: ", cin >> ok;
-        Sleep(load_ms);
-        cls;
-    }
     else
-    {
         cout << "\t\t[Empty Data]\n\n";
-        Sleep(load_ms);
-    }
+    click();
 }

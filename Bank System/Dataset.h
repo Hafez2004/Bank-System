@@ -1,10 +1,8 @@
 #pragma once
-#include <iostream>
-#include <windows.h>
-#include <vector>
+#include "SYNCH.h"
 #define str string
 using namespace std;
-class Dataset
+class Dataset : public SYNCH
 {
 protected:
 	vector<str> userName, Email, Password, Address;

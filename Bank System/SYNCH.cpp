@@ -2,7 +2,7 @@
 
 void SYNCH::start()
 {
-
+    system("color 06");
 	cout << "\t\t\t\t\t[Bank System]\n";
 	cout <<
         "\t\t\t _____          _    ____          _     \n"
@@ -32,13 +32,13 @@ void SYNCH::start()
 void SYNCH::finish()
 {
     char x = 5;
-    cout << "\n\t\t\t";
+    cout << "\n\n\n\n\t\t\t\t\t";
     while (x--)
     {
         cout << "###  ";
         Sleep(load_ms);
     }
-    cout << "\n\t\t\t\t [Done]";
+    cout << "\n\t\t\t\t\t\t [Done]";
     Sleep(IO_ms);
     system("cls");
 }
@@ -48,4 +48,25 @@ void SYNCH::aboutUs()
     cout << "No Description here...\n";
     Sleep(1500);
     system("cls");
+}
+
+void SYNCH::click()
+{
+    str command;
+    cout << "\n\n:: ", cin >> command;
+    if (command == "exit" || command == "out" || command == "quit")
+    {
+        cls;
+        finish();
+        ExitProcess(0);
+    }
+    cls;
+}
+
+bool SYNCH::validateInput(string input)
+{
+    for (int index = 0; index < input.size(); index++)
+        if (input[index] < 48 || input[index] > 57)
+            return false;
+    return true;
 }

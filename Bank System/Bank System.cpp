@@ -1,4 +1,3 @@
-#include <iostream>
 #include "SYNCH.h"
 #include "Client.h"
 using namespace std;

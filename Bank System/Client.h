@@ -1,14 +1,7 @@
 #pragma once
-#include <iostream>
-#include <algorithm>
-#include <string>
-#include <map>
 #include "Dataset.h"
-#include "SYNCH.h"
-#define str string
-#define cls system("cls")
 using namespace std;
-class Client : public SYNCH, public Dataset
+class Client : public Dataset
 {
 public:
 	Client();
@@ -25,4 +18,3 @@ protected:
 	str fname, lname, email, pass, confirm, addr;
 	vector<int> bth; // bth[0] day, bth[1] month, bth[2] year
 };
-
